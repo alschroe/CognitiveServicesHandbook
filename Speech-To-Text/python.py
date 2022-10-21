@@ -4,12 +4,11 @@ import azure.cognitiveservices.speech as speechsdk
 def recognize_from_microphone():
     # Cloud connection
     speech_config = speechsdk.SpeechConfig(subscription=os.environ.get('SPEECH_KEY'), region=os.environ.get('SPEECH_REGION'))
+    speech_config.speech_recognition_language="de_DE"
 
     # Container connection
     # speech_config = speechsdk.SpeechConfig(
     #     host="ws://localhost:5000")
-
-    speech_config.speech_recognition_language="de-DE"
 
     audio_config = speechsdk.audio.AudioConfig(use_default_microphone=True)
     speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config, audio_config=audio_config)
