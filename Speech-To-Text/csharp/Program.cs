@@ -7,12 +7,8 @@ using Microsoft.CognitiveServices.Speech.Audio;
 class Program
 {
     // Cloud connection
-    static string speechKey = Environment.GetEnvironmentVariable("SPEECH_KEY");
-    static string speechRegion = Environment.GetEnvironmentVariable("SPEECH_REGION");
-
-    // Container connection
-    // var config = SpeechConfig.FromHost(
-    //     new Uri("ws://localhost:5000"));
+    // static string speechKey = Environment.GetEnvironmentVariable("SPEECH_KEY");
+    // static string speechRegion = Environment.GetEnvironmentVariable("SPEECH_REGION");
 
     static void OutputSpeechRecognitionResult(SpeechRecognitionResult speechRecognitionResult)
     {
@@ -41,8 +37,13 @@ class Program
     async static Task Main(string[] args)
     {
         // config.SpeechRecognitionLanguage = "en-US";
-        var config = SpeechConfig.FromSubscription(speechKey, speechRegion);
-        config.SpeechRecognitionLanguage = "de-DE";
+        // var config = SpeechConfig.FromSubscription(speechKey, speechRegion);
+        // config.SpeechRecognitionLanguage = "de-DE";
+
+        // Container connection
+        var config = SpeechConfig.FromHost(
+            new Uri("ws://localhost:5000"));
+
 
         using var audioConfig = AudioConfig.FromDefaultMicrophoneInput();
         using var speechRecognizer = new SpeechRecognizer(config, audioConfig);
